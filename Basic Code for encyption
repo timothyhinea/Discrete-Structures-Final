@@ -1,0 +1,58 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+string StringText;
+string codeword;
+string AdjustedKeyword;
+
+string repeat(string s, int n)
+  {
+    string s1 = s;
+
+    for (int i=1; i < n; i++)
+      s += s1;
+
+      return s;
+  }
+
+
+int main ()
+{
+
+  cout << "Please type in text string NOW!" << endl;
+
+  getline(cin, StringText);
+
+  cout << "Please enter the CodeWord" << endl;
+
+  getline(cin, codeword);
+
+  string s = codeword;
+  int n = (StringText.length()/codeword.length())+1;
+
+  string AdjustedKeyword = repeat (s, n);
+
+  cout << endl << "Encrypted Text: ";
+  for (int i = 0; i < StringText.length(); i++)
+  {
+    if(StringText[i]>=97 && StringText[i]<=122)
+	    {
+		StringText[i]=StringText[i]-32;
+	    }
+    if(AdjustedKeyword[i] >=97 && AdjustedKeyword[i] <=122)
+	    {
+		AdjustedKeyword[i] = AdjustedKeyword[i]-32;
+	    }
+
+   int offset =  (StringText[i]+AdjustedKeyword[i]) %26;
+
+   char TEXT = offset += 'A';
+
+   cout << TEXT;
+  }
+
+  cout << endl << endl << "Plain Text: " << StringText << endl << endl << "Code Word: " << codeword << endl;
+
+  return 0;
+}
